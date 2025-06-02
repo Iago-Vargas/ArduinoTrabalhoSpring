@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Controle da Lâmpada</title>
+    <link rel="stylesheet" href="../css/index.css" />
+</head>
+<body>
+<div class="container">
+    <h1>Controle de Lâmpada</h1>
+
+    <img id="lampada" src="../images/geniodalampadabugado.png" alt="Lâmpada" />
+
+    <div class="botoes">
+        <button onclick="ligar()">Ligar</button>
+        <button onclick="desligar()">Desligar</button>
+    </div>
+</div>
+
+<script>
+    function ligar() {
+        fetch("http://localhost:8080/led/ligar")
+            .then(() => {
+                document.getElementById("lampada").src = "../img/lamp-on.png";
+            })
+            .catch((err) => console.error("Erro ao ligar:", err));
+    }
+
+    function desligar() {
+        fetch("http://localhost:8080/led/desligar")
+            .then(() => {
+                document.getElementById("lampada").src = "../img/lamp-off.png";
+            })
+            .catch((err) => console.error("Erro ao desligar:", err));
+    }
+</script>
+</body>
+</html>
